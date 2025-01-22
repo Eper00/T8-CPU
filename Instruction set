@@ -1,0 +1,52 @@
+The instructions are 16 bit longs. The x/y the register selector, for example x=1 means R1. The Machine code reprepsented in bytes. The "a" means the address the "d" means the data. The "-" menas the dont care value.
+Aritmetic instrunctions:
+
+Assembly                  Machine Code           Meaning
+ADD Rx, Ry                0 0 x y                (R0=Rx+Ry)
+SUB Ry, Ry                0 1 x y                (R0=Rx-Ry)
+COMP Rx                   0 2 x                  (R0=-Rx, complement)
+SHFT Rx                   0 3 x y                (R0=Rx<-Ry, bitshift to the left)
+NEG Rx                    0 4 x                  (R0=-Rx, bitwise negation)
+AND Rx, Ry                0 5 x y                (R0=Rx*Ry, bitwise and)
+OR Rx, Ry                 0 6 x y                (R0=Rx+Ry, bitwise or)
+NAND Rx, Ry               0 7 x y                (R0=-(Rx*Ry), bitwise nand)
+NOR Rx, Ry                0 8 x y                (R0=-(Rx+Ry), bitwise nor)
+XOR Rx, Ry                0 9 x y                (R0=Rx O Ry, bitwise xor)
+INC Rx                    0 a x                  {R0=Rx+1}
+DEC Rx                    0 b x                  {R0=Rx-1}
+
+ADD Rx, DATA              4 0 x y                (R0=Rx+data)
+SUB Ry, DATA              4 1 x y                (R0=Rx-data)
+AND Rx, DATA              4 5 x y                (R0=Rx*data, bitwise and)
+OR Rx, DATA               4 6 x y                (R0=Rx+data, bitwise or)
+NAND Rx, DATA             4 7 x y                (R0=-(Rx*data), bitwise nand)
+NOR Rx, DATA              4 8 x y                (R0=-(Rx+data), bitwise nor)
+XOR Rx, DATA              4 9 x y                (R0=Rx O data, bitwise xor)
+
+
+
+These instructions manipulates the flags (C,B,G,E,L,Z), carry, borrow, greater, equal, less, zero.
+
+Data instructions:
+
+Assembly                  Machine Code           Meaning
+LOAD R1 [RAM]              1 x a a               (R1<-[RAM])
+STORE R1 [RAM]             2 x a a               ([RAM]<-R1)
+LOAD R1 DATA               3 x d d               (R1<-data)
+
+
+Control instructions:
+Assembly                  Machine Code           Meaning
+JMP ADDRES                5 - a a                (Program counter<-adress) 
+JMPC ADDRES               6 - a a                (Program counter<-adress if the carry flag is 1)
+JMPB ADDRES               7 - a a                (Program counter<-adress if the borrow flag is 1)
+JMPZ ADDRES               8 - a a                (Program counter<-adress if the zero flag is 1)
+CALL ADDRES               9 - a a                (Program counter<-adress, the stack pointer increses, the program counter is saved to the stack)
+RETURN                    a - - -                (Program counter<-stack data, the stack pointer decreases, the program counter is loaded to original value)
+PUSH RX                   b x - -                (The data of the Rx is saved to the stack, the stack pointer increses)
+POP RX                    c x - -                (The data of the stack is loaded to the Rx, the stack pointer decreses)
+
+
+
+
+
