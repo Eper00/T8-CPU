@@ -8,4 +8,4 @@ In this design, the data bus is 8 bits wide, and the instructions are 16 bits lo
 
 # The Parts of the CPU
 
-The design has 4 fundamental elements: the memory (RAM for the data, ROM for the program, and the registers), the Arithmetic Logic Unit (ALU), the environment of the data transfer (program counter and data bus), and the control unit.
+The design has 4 fundamental elements: the memory (RAM for the data, ROM for the program, and the registers), the Arithmetic Logic Unit (ALU), the environment of the data transfer (program counter, the clock divider, and the data bus), and the control unit.
